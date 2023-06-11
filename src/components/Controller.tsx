@@ -26,10 +26,10 @@ const Controller: React.FC<ControllerProps> = ({ radio }) => {
   console.log('radio', radio)
   if(radio == 1)
   {
-    url="https://aichatbot.herokuapp.com/post-msg-pdf/"
+    url="https://aichatbot.herokuapp.com/post-msg/"
 
   }else{
-    url="https://aichatbot.herokuapp.com/post-msg/"
+    url="https://aichatbot.herokuapp.com/post-msg-pdf/"
 
   }
   

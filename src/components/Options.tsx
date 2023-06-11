@@ -89,8 +89,9 @@ interface RadioProps {
 
 const Radio: React.FC<RadioProps> = ({ selectedRadioButton, setSelectedRadioButton }) => {
   const radioButtons: RadioButton[] = [
-    { label: 'Chat with FAQ bot' },
     { label: 'Chat with FAQ bot from PDF' },
+    { label: 'Chat with FAQ bot' },
+    
   ];
 
   const handleRadioButtonChange = (index: number) => {
