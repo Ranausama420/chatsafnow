@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/navbar.css';
 import SAFLogo from '../assets/SAFLOGO.png';
-import { FaUser } from 'react-icons/fa';
+// import { FaUser } from 'react-icons/fa';
 
 
 enum View {

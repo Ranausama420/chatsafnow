@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Controller from "./components/Controller";
 import FAQs from "./components/FAQlist";
-import Radio from "./components/Options";
+// import Radio from "./components/Options";
 import ExtractedPDF from "./components/PDFview";
 import Navbar from "./components/Navbar";
 
@@ -13,14 +13,14 @@ enum View {
 
 function App() {
 
-  const [selectedRadioButton, setSelectedRadioButton] = useState<number | null>(null);
+  // const [selectedRadioButton, setSelectedRadioButton] = useState<number | null>(null);
   const [view, setView] = useState<View>(View.CHATBOT);
 
 
   const handleNavOptionClick = (selectedView: View) => {
     setView(selectedView);
   };
-
+  const rad=0;
   return (
     <div>
       <Navbar activeOption={view} handleNavOptionClick={handleNavOptionClick} />
@@ -30,7 +30,7 @@ function App() {
       {view === View.CHATBOT && (
         <div style={{ display: 'flex' }}>
           <div style={{ flex: '1', padding: '10px' }}>
-            <Controller radio={selectedRadioButton} />
+            <Controller radio={rad} />
           </div>
           <div style={{ flex: '1', padding: '10px' }}>
             {/* <div style={{ display: 'flex' }}>
