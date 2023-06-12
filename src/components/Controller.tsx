@@ -42,7 +42,7 @@ const Controller: React.FC<ControllerProps> = ({ radio }) => {
     }).then(response => {
       console.log(response.data);
       const msgtext=response.data.msg
-      const rachelMessage = { sender: "bot", msgtext };
+      const rachelMessage = { sender: "FM Chatbot", msgtext };
       messagesArr.push(rachelMessage);
       console.log(messagesArr)
       setMessages(messagesArr);
@@ -98,7 +98,7 @@ const Controller: React.FC<ControllerProps> = ({ radio }) => {
 
           {messages.length == 0 && !isLoading && (
             <div className="text-center font-light italic mt-10">
-              Send bot a message...
+              Please ask me a question...
             </div>
           )}
 

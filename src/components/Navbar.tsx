@@ -1,5 +1,6 @@
 import React from 'react';
 import '../assets/navbar.css';
+import SAFLogo from '../assets/SAFLOGO.png';
 import { FaUser } from 'react-icons/fa';
 
 
@@ -20,7 +21,8 @@ const Navbar: React.FC<NavbarProps> = ({ activeOption, handleNavOptionClick }) =
     <nav className="navbar bg-gradient-to-r from-gray-200 via-gray-150 to-gray-200">
       <div className="navbar-logo">
         {/* Add your logo or icon here */}
-        <FaUser />
+        {/* <FaUser /> */}
+        <img src={SAFLogo} alt="SAF Logo" style={{ height: '40px', width: '40px' }}/>
       </div>
       <ul className="navbar-options">
         <li
@@ -28,22 +30,22 @@ const Navbar: React.FC<NavbarProps> = ({ activeOption, handleNavOptionClick }) =
           onClick={() => handleNavOptionClick(View.CHATBOT)}
         >
           <i className="fas fa-comment"></i>
-          <span>Chatbot</span>
+          <span>FM Chatbot</span>
         </li>
         <li
           className={`navbar-option ${activeOption === 'FAQ Bank' ? 'active' : ''}`}
           onClick={() => handleNavOptionClick(View.FAQ_BANK)}
         >
           <i className="fas fa-book"></i>
-          <span>FAQ Bank</span>
+          <span>Refrence Source</span>
         </li>
-        <li
+        {/* <li
           className={`navbar-option ${activeOption === 'RAW PDF' ? 'active' : ''}`}
           onClick={() => handleNavOptionClick(View.RAW_PDF)}
         >
           <i className="fas fa-book"></i>
           <span>RAW PDF</span>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

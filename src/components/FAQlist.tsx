@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import styled, { keyframes } from "styled-components";
+import repetitionLogo from '../assets/rot.png';
 // import stored_data from "./stored_faq.json"
 // import { FaLink } from 'react-icons/fa';
 // import { Accordion, Card, Button } from 'react-bootstrap';
@@ -13,7 +14,7 @@ interface FAQItem {
 
 const FAQContainer = styled.div`
   width: 100%;
-  max-width: 850px;
+  max-width: 1250px;
   margin: 0 auto;
   
 `;
@@ -52,13 +53,19 @@ const FAQHeading = styled.h2`
 font-size: 18px;
 margin-bottom: 10px;
 color: #756FF2;
+
 `;
     
 const DropdownIcon = styled(FaAngleDown)`
-  margin-left: 50px;
+  margin-left: 20px;
 `;
 const DropupIcon = styled(FaAngleUp)`
-  margin-left: 50px;
+  margin-left: 20px;
+`;
+
+const Logo = styled.img`
+  width: 20px;
+  height: 20px;
 `;
 
 const spinAnimation = keyframes`
@@ -216,9 +223,9 @@ const FAQs: React.FC = () => {
 
 
   return (
-    <FAQContainer>
-      <div className="flex items-center justify-between w-full p-2 mb-5 mt-1 bg-gray-900 font-bold shadow bg-gradient-to-r from-gray-200 via-gray-150 to-gray-200">
-      <FAQHeading style={{color:"grey"}}>Most FAQ List</FAQHeading>
+    <div>
+      <div><div className="flex items-center justify-between w-full p-2 mb-3 bg-gray-900 font-bold shadow bg-gradient-to-r from-gray-200 via-gray-150 to-gray-200">
+      <FAQHeading style={{color:"grey"}}>Here are the most recent questions asked along with their answers</FAQHeading>
       <button
         onClick={fetchData}
         className={
@@ -241,7 +248,10 @@ const FAQs: React.FC = () => {
           />
         </svg>
       </button></div>
-
+</div>
+<div style={{overflowY:'scroll',maxHeight:'750px',flex: '1'}}>
+    <FAQContainer>
+      
 
       {isLoading ? (
         <Loader></Loader>
@@ -251,11 +261,16 @@ const FAQs: React.FC = () => {
           <div key={index}>
             <FAQQuestion onClick={() => toggleCard(index)}>
               <div>{faq.question}</div>
+              {/* <AskedCount>Asked: {faq.answer.length} times</AskedCount> */}
+              <div style={{ display: 'flex' }}>
+              <Logo src={repetitionLogo} alt="Repetition Logo" />  <span>{faq.answer.length}</span>
+              
               {expandedIndex === index ? (
                 <DropupIcon size={20} />
               ) : (
                 <DropdownIcon size={20} />
               )}
+              </div>
             </FAQQuestion>
            
                 
@@ -268,7 +283,7 @@ const FAQs: React.FC = () => {
         <div><span><FaLink/></span></div>
       </button> */}
       <h5><u>Ans: </u> {answerIndex + 1}</h5>
-      <p>{answer}</p>
+      {/* <p>{answer}</p>
       <br></br>
       {faq.source.map((source_doc, srcIndex) => (
         <div>
@@ -279,7 +294,24 @@ const FAQs: React.FC = () => {
   <p>Source: {source_doc.source}</p>
         </div>
       ))}
-  
+   */}
+   {answer.startsWith('Unfortunately,') ? (
+  <p>{answer}</p>
+) : (
+  <>
+    <p>{answer}</p>
+    <br />
+    {faq.source.map((source_doc, srcIndex) => (
+      <div key={srcIndex}>
+        <hr />
+        <h5><u>Source: </u> {srcIndex + 1}</h5>
+        <p>{source_doc.page_content}</p>
+        <p>From page: {source_doc.pdf_numpages - 1}</p>
+        <p>Source: {source_doc.source}</p>
+      </div>
+    ))}
+  </>
+)}
   
               </FAQAnswer>
             ))}
@@ -335,6 +367,8 @@ const FAQs: React.FC = () => {
       ))} */}
       
     </FAQContainer>
+    </div>
+    </div>
   );
 };
 

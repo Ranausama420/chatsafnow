@@ -33,16 +33,16 @@ function App() {
             <Controller radio={selectedRadioButton} />
           </div>
           <div style={{ flex: '1', padding: '10px' }}>
-            <div style={{ display: 'flex' }}>
+            {/* <div style={{ display: 'flex' }}>
               <div className="sec1" style={{ flex: '1', paddingTop: '100px' }}>
                 <Radio selectedRadioButton={selectedRadioButton} setSelectedRadioButton={setSelectedRadioButton} />
               </div>
               <div className="sec1" style={{ flex: '1' }}>
                 <ExtractedPDF width={460} height={330} />
               </div>
-            </div>
+            </div> */}
             <div style={{ display: 'flex' }}>
-              <div className="sec2" style={{ height: '480px', width: '400px', overflowY: 'scroll', flex: '1',marginTop:'10px', scrollbarWidth: 'thin', scrollbarColor: '#ccc transparent' }}>
+              <div className="sec2" style={{ height: '100%', width: '400px', flex: '1' }}>
                 <FAQs />
               </div>
             </div>
@@ -54,7 +54,7 @@ function App() {
         <div>
           {/* Add your FAQ Bank component here */}
           <div style={{ display: 'flex' }}>
-              <div className="sec2" style={{ height: '100%', width: '400px', overflowY: 'scroll', flex: '1' }}>
+              <div className="sec2 p-3" style={{ height: '100%', width: '800px', flex: '1' }}>
                 <FAQs />
               </div>
               {/* <div className="sec2" style={{ height: '700px', width: '400px', overflowY: 'scroll', flex: '1', border: '1px solid #ccc' }}>

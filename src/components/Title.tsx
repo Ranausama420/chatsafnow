@@ -30,7 +30,7 @@ function Title({ setMessages }: Props) {
 
   return (
     <div className="flex justify-between items-center w-full p-4 bg-gray-900 font-bold shadow bg-gradient-to-r from-gray-200 via-gray-150 to-gray-200">
-      <div className="" style={{color:"grey"}}>Ai chat</div>
+      <div className="" style={{color:"grey"}}>FM Magazine ChatBot</div>
       <button
         onClick={resetConversation}
         className={
