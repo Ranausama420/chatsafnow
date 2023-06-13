@@ -6,9 +6,11 @@ import MessageComp from "./Message";
 
 interface ControllerProps {
   radio: number | null;
+  anotherVariable: string;
+  setAnotherVariable: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Controller: React.FC<ControllerProps> = ({ radio }) => {
+const Controller: React.FC<ControllerProps> = ({ radio, anotherVariable,setAnotherVariable}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<any[]>([]);
 
@@ -46,6 +48,7 @@ const Controller: React.FC<ControllerProps> = ({ radio }) => {
       messagesArr.push(rachelMessage);
       console.log(messagesArr)
       setMessages(messagesArr);
+      setAnotherVariable('new')
 
       // Play audio
       setIsLoading(false);

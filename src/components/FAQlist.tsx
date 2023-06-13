@@ -98,10 +98,16 @@ const Loader = styled.div`
   }
 `;
 
-const FAQs: React.FC = () => {
+interface QAProps {
+  anotherVariable: string;
+  setAnotherVariable: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
   const [expandedIndex, setExpandedIndex] = useState<number>(-1);
   const [faqData, setFaqData] = useState<FAQItem[]>([]);
   const [isResetting, setIsResetting] = useState(false);
+  
 
   // const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -114,8 +120,11 @@ const FAQs: React.FC = () => {
   const fetchData = async () => {
     console.log('fetchData')
     setIsResetting(true);
+    
     try {
-      setIsLoading(true);
+      if (anotherVariable !== 'new') {
+        setIsLoading(true);
+      }
       const response = await axios.post('https://aichatbot.herokuapp.com/readdb/', {}, {
         headers: {
           Accept: 'application/json',
@@ -174,9 +183,7 @@ const FAQs: React.FC = () => {
 
 
   useEffect(() => {
-    
     fetchData();
-
   }, []);
 
   const toggleCard = (index: number) => {
@@ -186,41 +193,15 @@ const FAQs: React.FC = () => {
       setExpandedIndex(index);
     }
   };
-  // const handleClick = (question: string) => {
-  //   // Perform actions using the question value
-  //   console.log('Clicked on question:', question);
-   
-  // };
 
 
-  
-
-  // // Reset conversation
-  // const resetConversation = async () => {
-  //   setIsResetting(true);
-
-  //   await axios
-  //     .get("https://aichatbot.herokuapp.com/reset-qa", {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       if (res.status == 200) {
-  //         // setMessages([]);
-  //         console.log('rest')
-  //         useEffect(() => {
-    
-  //           fetchData();
-        
-  //         }, []);
-  //       }
-  //     })
-  //     .catch((err) => {});
-
-  //   setIsResetting(false);
-  // };
-
+    useEffect(() => {
+      console.log('faq',anotherVariable)
+      if (anotherVariable === 'new') {
+        setAnotherVariable('old');
+        fetchData();
+      }
+    }, [anotherVariable]);
 
   return (
     <div>

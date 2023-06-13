@@ -13,14 +13,16 @@ enum View {
 
 function App() {
 
-  // const [selectedRadioButton, setSelectedRadioButton] = useState<number | null>(null);
+  const [selectedRadioButton, setSelectedRadioButton] = useState<number | null>(null);
+  const [anotherVariable, setAnotherVariable] = useState('');
   const [view, setView] = useState<View>(View.CHATBOT);
 
 
   const handleNavOptionClick = (selectedView: View) => {
     setView(selectedView);
   };
-  const rad=0;
+  // setAnotherVariable('hgfdfghjhg');
+
   return (
     <div>
       <Navbar activeOption={view} handleNavOptionClick={handleNavOptionClick} />
@@ -30,7 +32,9 @@ function App() {
       {view === View.CHATBOT && (
         <div style={{ display: 'flex' }}>
           <div style={{ flex: '1', padding: '10px' }}>
-            <Controller radio={rad} />
+            <Controller radio={selectedRadioButton} 
+            anotherVariable={anotherVariable}
+              setAnotherVariable={setAnotherVariable}/>
           </div>
           <div style={{ flex: '1', padding: '10px' }}>
             {/* <div style={{ display: 'flex' }}>
@@ -43,7 +47,9 @@ function App() {
             </div> */}
             <div style={{ display: 'flex' }}>
               <div className="sec2" style={{ height: '100%', width: '400px', flex: '1' }}>
-                <FAQs />
+                <FAQs 
+                anotherVariable={anotherVariable}
+              setAnotherVariable={setAnotherVariable}/>
               </div>
             </div>
           </div>
@@ -55,7 +61,8 @@ function App() {
           {/* Add your FAQ Bank component here */}
           <div style={{ display: 'flex' }}>
               <div className="sec2 p-3" style={{ height: '100%', width: '800px', flex: '1' }}>
-                <FAQs />
+                <FAQs anotherVariable={anotherVariable}
+              setAnotherVariable={setAnotherVariable} />
               </div>
               {/* <div className="sec2" style={{ height: '700px', width: '400px', overflowY: 'scroll', flex: '1', border: '1px solid #ccc' }}>
               <ExtractedPDF text={loremIpsum} width={750} height={700} />
