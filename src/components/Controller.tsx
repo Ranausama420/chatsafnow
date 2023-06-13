@@ -13,6 +13,7 @@ interface ControllerProps {
 const Controller: React.FC<ControllerProps> = ({ radio, anotherVariable,setAnotherVariable}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<any[]>([]);
+  console.log(anotherVariable)
 
 
 

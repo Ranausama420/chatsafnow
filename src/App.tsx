@@ -13,7 +13,7 @@ enum View {
 
 function App() {
 
-  const [selectedRadioButton, setSelectedRadioButton] = useState<number | null>(null);
+  // const [selectedRadioButton, setSelectedRadioButton] = useState<number | null>(null);
   const [anotherVariable, setAnotherVariable] = useState('');
   const [view, setView] = useState<View>(View.CHATBOT);
 
@@ -21,8 +21,7 @@ function App() {
   const handleNavOptionClick = (selectedView: View) => {
     setView(selectedView);
   };
-  // setAnotherVariable('hgfdfghjhg');
-
+  const selectedRadioButton=0;
   return (
     <div>
       <Navbar activeOption={view} handleNavOptionClick={handleNavOptionClick} />
