@@ -9,7 +9,7 @@ import axios from 'axios';
 interface FAQItem {
   question: string;
   answer: string[];
-  source: { page_content: string; pdf_numpages: number; source: string;}[];
+  source: { page_content: string; pdf_numpages: number; source: string;}[][];
 }
 
 const FAQContainer = styled.div`
@@ -141,7 +141,7 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
         // console.log(typeof item)
         const question=item.question
         const answers=[item.answer]
-        const source=item.source
+        const source=[item.source]
 
       const questionExists = parsedData.some((data) => data.question === question);
       if (questionExists) {
@@ -151,7 +151,14 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
         if (existingData) {
           // Append the new answer to the existing data's answer list
           existingData.answer.push(...answers as string[]);
-          existingData.source = item.source;
+          // existingData.source = item.source;
+          existingData.source.push(...source as {
+            page_content: string;
+            pdf_numpages: number;
+            source: string;
+          }[][]);
+
+          console.log(item)
         }
       } else {
         // Add a new entry to the parsedData list
@@ -162,7 +169,7 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
             page_content: string;
             pdf_numpages: number;
             source: string;
-          }[],
+          }[][],
         });
       }
 
@@ -196,7 +203,7 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
 
 
     useEffect(() => {
-      console.log('faq',anotherVariable)
+      // console.log('faq',anotherVariable)
       if (anotherVariable === 'new') {
         setAnotherVariable('old');
         fetchData();
@@ -253,43 +260,36 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
               )}
               </div>
             </FAQQuestion>
-           
-                
             {expandedIndex === index && 
   
             <div>
       {faq.answer.map((answer, answerIndex) => (
         <FAQAnswer key={answerIndex}>
-           {/* <button onClick={}>
-        <div><span><FaLink/></span></div>
-      </button> */}
       <h5><u>Ans: </u> {answerIndex + 1}</h5>
-      {/* <p>{answer}</p>
-      <br></br>
-      {faq.source.map((source_doc, srcIndex) => (
-        <div>
-          <hr></hr>
-          <h5><u>Source: </u> {srcIndex + 1}</h5>
-  <p>{source_doc.page_content}</p>
-  <p>From page: {source_doc.pdf_numpages - 1}</p>
-  <p>Source: {source_doc.source}</p>
-        </div>
-      ))}
-   */}
    {answer.startsWith('Unfortunately,') ? (
   <p>{answer}</p>
 ) : (
   <>
     <p>{answer}</p>
     <br />
+
     {faq.source.map((source_doc, srcIndex) => (
-      <div key={srcIndex}>
+      <div>{source_doc.map((source_docs, srcdIndex) => (
+      <div>
+
+{answerIndex === srcIndex ? (
+        <>
+        <h5><u>Source: </u> {srcdIndex + 1}</h5>
+        <div key={srcIndex}>
         <hr />
-        <h5><u>Source: </u> {srcIndex + 1}</h5>
-        <p>{source_doc.page_content}</p>
-        <p>From page: {source_doc.pdf_numpages - 1}</p>
-        <p>Source: {source_doc.source}</p>
+          <p>{source_docs.page_content}</p>
+          <p>From page: {source_docs.pdf_numpages - 1}</p>
+        <p>Source: {source_docs.source}</p>
+        </div>
+        </>
+      ) : null}
       </div>
+      ))}</div>
     ))}
   </>
 )}
@@ -304,48 +304,7 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
         ))}
         </div>
       )}
-      {/* {faqData.map((faq, index) => (
-        <div key={index}>
-          <FAQQuestion onClick={() => toggleCard(index)}>
-            <div>{faq.question}</div>
-            {expandedIndex === index ? (
-              <DropupIcon size={20} />
-            ) : (
-              <DropdownIcon size={20} />
-            )}
-          </FAQQuestion>
-         
-              
-          {expandedIndex === index && 
-
-          <div>
-    {faq.answer.map((answer, answerIndex) => (
-      <FAQAnswer key={answerIndex}>
-         <button onClick={() => handleClick(faq.question)}>
-      <div><span><FaLink/></span></div>
-    </button>
-    <h5><u>Ans: </u> {answerIndex + 1}</h5>
-    <p>{answer}</p>
-    <br></br>
-    {faq.source.map((source_doc, srcIndex) => (
-      <div>
-        <hr></hr>
-        <h5><u>Source: </u> {srcIndex + 1}</h5>
-<p>{source_doc.page_content}</p>
-<p>From page: {source_doc.pdf_numpages - 1}</p>
-<p>Source: {source_doc.source}</p>
-      </div>
-    ))}
-
-
-            </FAQAnswer>
-          ))}
-          </div>
-          
-          }
-          
-        </div>
-      ))} */}
+      
       
     </FAQContainer>
     </div>
