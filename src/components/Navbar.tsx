@@ -2,7 +2,7 @@ import React,{ useState } from 'react';
 import '../assets/navbar.css';
 import SAFLogo from '../assets/SAFLOGO.png';
 // import { FaUser } from 'react-icons/fa';
-import { FiMinus, FiChevronDown,FiX  } from 'react-icons/fi';
+import { FiMinus, FiChevronDown  } from 'react-icons/fi';
 
 enum View {
   CHATBOT = "Chatbot",
