@@ -10,10 +10,9 @@ interface ControllerProps {
   setAnotherVariable: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Controller: React.FC<ControllerProps> = ({ radio, anotherVariable,setAnotherVariable}) => {
+const Controller: React.FC<ControllerProps> = ({ radio,setAnotherVariable}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<any[]>([]);
-  console.log(anotherVariable)
 
 
 
@@ -47,9 +46,10 @@ const Controller: React.FC<ControllerProps> = ({ radio, anotherVariable,setAnoth
       const msgtext=response.data.msg
       const rachelMessage = { sender: "FM Chatbot", msgtext };
       messagesArr.push(rachelMessage);
-      console.log(messagesArr)
+      // console.log(messagesArr)
       setMessages(messagesArr);
       setAnotherVariable('new')
+      handleClick();
 
       // Play audio
       setIsLoading(false);
@@ -62,6 +62,19 @@ const Controller: React.FC<ControllerProps> = ({ radio, anotherVariable,setAnoth
   }
   };
   
+
+  
+  const [clickCount, setClickCount] = useState(0);
+  
+
+  const handleClick = () => {
+    setClickCount(clickCount + 1);
+    console.log('ff')
+
+    if (clickCount + 1 === 2) {
+      window.location.href = 'https://profile.safnow.org/account/login.aspx?RedirectURL=https%3A%2F%2Fsafnow.org&_gl=1*1l43es0*_ga*NDI3MjYyMTYxLjE2ODY5MDM0OTk.*_ga_HCZ8NPPN6Y*MTY4NjkwMzQ5OS4xLjAuMTY4NjkwMzQ5OS4wLjAuMA..&_ga=2.164900028.2067406789.1686903499-427262161.1686903499&reload=timezone'; // Replace '/new-link' with the desired URL
+    }
+  };
   
 
 
