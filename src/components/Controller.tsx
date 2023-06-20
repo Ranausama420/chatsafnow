@@ -3,6 +3,7 @@ import Title from "./Title";
 import axios from "axios";
 import Chatwidget from "./chatwidget";
 import MessageComp from "./Message";
+import '../assets/SwirlPopup.css';
 
 interface ControllerProps {
   radio: number | null;
@@ -69,19 +70,42 @@ const Controller: React.FC<ControllerProps> = ({ radio,setAnotherVariable}) => {
 
   const handleClick = () => {
     setClickCount(clickCount + 1);
-    console.log('ff')
 
     if (clickCount + 1 === 2) {
-      window.location.href = 'https://profile.safnow.org/account/login.aspx?RedirectURL=https%3A%2F%2Fsafnow.org&_gl=1*1l43es0*_ga*NDI3MjYyMTYxLjE2ODY5MDM0OTk.*_ga_HCZ8NPPN6Y*MTY4NjkwMzQ5OS4xLjAuMTY4NjkwMzQ5OS4wLjAuMA..&_ga=2.164900028.2067406789.1686903499-427262161.1686903499&reload=timezone'; // Replace '/new-link' with the desired URL
+      openPopup()
+      // window.location.href='https://staging.safnow.org/membership/'
+      // window.location.href = 'https://profile.safnow.org/account/login.aspx?RedirectURL=https%3A%2F%2Fsafnow.org&_gl=1*1l43es0*_ga*NDI3MjYyMTYxLjE2ODY5MDM0OTk.*_ga_HCZ8NPPN6Y*MTY4NjkwMzQ5OS4xLjAuMTY4NjkwMzQ5OS4wLjAuMA..&_ga=2.164900028.2067406789.1686903499-427262161.1686903499&reload=timezone'; // Replace '/new-link' with the desired URL
     }
   };
   
+  const [isOpen, setIsOpen] = useState(false);
 
+  const openPopup = () => {
+    setIsOpen(true);
+
+  };
+
+  const closePopup = () => {
+    setIsOpen(false);
+    window.location.href='https://staging.safnow.org/membership/'
+  };
 
 
   return (
     <div className="h-screen overflow-y-hidden">
       {/* Title */}
+      <div className="swirl-popup-container">
+      {/* <button onClick={openPopup}>Open Popup</button> */}
+      {isOpen && (
+        <div className="swirl-overlay" onClick={closePopup}>
+        <div className="swirl-popup">
+          <h1 className="font-bold m-1" style={{color:"#1568B3", fontSize:"20px"}}>Join SAF</h1>
+          <p className="p-5" style={{color:'#80809C'}}>Thank you for choosing our Floral Management Magazine ChatBot. If you find this resource valuable, we wholeheartedly encourage you to join as an SAF member. By becoming a member, you will gain unlimited access to query the chatbot, allowing you to explore all articles, past and present, covering a wide range of topics from the industry's top floral magazine.</p>
+          <button style={{backgroundColor:"#1568B3"}} onClick={closePopup}>Become Member</button>
+        </div>
+        </div>
+      )}
+    </div>
       <Title setMessages={setMessages} />
 
       <div className="flex flex-col justify-between h-full overflow-y-scroll pb-96 "style={{width:'100%'}}>
