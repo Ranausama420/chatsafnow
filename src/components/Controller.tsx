@@ -71,7 +71,7 @@ const Controller: React.FC<ControllerProps> = ({ radio,setAnotherVariable}) => {
   const handleClick = () => {
     setClickCount(clickCount + 1);
 
-    if (clickCount + 1 === 2) {
+    if (clickCount + 1 === 5) {
       openPopup()
       // window.location.href='https://staging.safnow.org/membership/'
       // window.location.href = 'https://profile.safnow.org/account/login.aspx?RedirectURL=https%3A%2F%2Fsafnow.org&_gl=1*1l43es0*_ga*NDI3MjYyMTYxLjE2ODY5MDM0OTk.*_ga_HCZ8NPPN6Y*MTY4NjkwMzQ5OS4xLjAuMTY4NjkwMzQ5OS4wLjAuMA..&_ga=2.164900028.2067406789.1686903499-427262161.1686903499&reload=timezone'; // Replace '/new-link' with the desired URL
