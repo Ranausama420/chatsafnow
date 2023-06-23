@@ -1,8 +1,9 @@
 import React,{ useState } from 'react';
 import '../assets/navbar.css';
 import SAFLogo from '../assets/SAFLOGO.png';
+import SAFadd from '../assets/add.png';
 // import { FaUser } from 'react-icons/fa';
-import { FiMinus, FiChevronDown  } from 'react-icons/fi';
+import { FiMinus, FiChevronDown} from 'react-icons/fi';
 
 enum View {
   CHATBOT = "Chatbot",
@@ -81,6 +82,10 @@ const Navbar: React.FC<NavbarProps> = ({ activeOption, handleNavOptionClick }) =
           <i className="fas fa-book"></i>
           <span>RAW PDF</span>
         </li> */}
+        <li><div className="navbar-logo ml-5">
+        {/* <FaUser /> */}
+        <img src={SAFadd} alt="SAF Logo" style={{ height: '60px', width: '710px',marginTop:'-13px',position:"absolute",right:"35px"}}/>
+      </div></li>
       </ul>
 
         </nav>

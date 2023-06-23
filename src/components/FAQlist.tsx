@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import styled, { keyframes } from "styled-components";
 import repetitionLogo from '../assets/rot.png';
+
 // import stored_data from "./stored_faq.json"
 // import { FaLink } from 'react-icons/fa';
 // import { Accordion, Card, Button } from 'react-bootstrap';
@@ -33,7 +34,7 @@ const FAQQuestion = styled.div`
 `;
 
 const FAQAnswer = styled.div`
-  position: relative;
+  // position: relative;
   background-color: #f1f1f1;
   padding: 10px;
   border-radius: 5px;
@@ -41,13 +42,15 @@ const FAQAnswer = styled.div`
   /* Styling for the button */
   z-index: -1; 
   button {
-    position: absolute;
-    top: 5px;
-    right: 5px;
+    // position: absolute;
+    // right: 1100px;
+    margin-left: -10px;
     border: none;
+    color: blue;
     padding: 5px 10px;
     cursor: pointer;
   }
+
 `;
 const FAQHeading = styled.h2`
 font-size: 18px;
@@ -158,7 +161,7 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
             source: string;
           }[][]);
 
-          console.log(item)
+          // console.log(item)
         }
       } else {
         // Add a new entry to the parsedData list
@@ -174,6 +177,7 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
       }
 
         setFaqData(parsedData);
+       
       
   
       });
@@ -209,6 +213,12 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
         fetchData();
       }
     }, [anotherVariable]);
+
+    const [expandedId, setExpandedId] = useState('');
+
+  const toggleExpanded = (id: string) => {
+    setExpandedId(expandedId === id ? '' : id);
+  };
 
   return (
     <div>
@@ -249,7 +259,6 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
           <div key={index}>
             <FAQQuestion onClick={() => toggleCard(index)}>
               <div>{faq.question}</div>
-              {/* <AskedCount>Asked: {faq.answer.length} times</AskedCount> */}
               <div style={{ display: 'flex' }}>
               <Logo src={repetitionLogo} alt="Repetition Logo" />  <span>{faq.answer.length}</span>
               
@@ -263,20 +272,25 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
             {expandedIndex === index && 
   
             <div>
+
       {faq.answer.map((answer, answerIndex) => (
+        <div>
+
         <FAQAnswer key={answerIndex}>
+        
       <h5><u>Ans: </u> {answerIndex + 1}</h5>
    {answer.startsWith('Unfortunately,') ? (
   <p>{answer}</p>
 ) : (
   <>
     <p>{answer}</p>
+    
+    <div><button onClick={() => toggleExpanded(answerIndex.toString())}>{expandedId === answerIndex.toString() ? 'Read Less' : 'Read More'}</button></div>
     <br />
-
+    
     {faq.source.map((source_doc, srcIndex) => (
-      <div>{source_doc.map((source_docs, srcdIndex) => (
+      <div id={answerIndex.toString()} style={{ display: expandedId === answerIndex.toString() ? 'block' : 'none' }}>{source_doc.map((source_docs, srcdIndex) => (
       <div>
-
 {answerIndex === srcIndex ? (
         <>
         <h5><u>Source: </u> {srcdIndex + 1}</h5>
@@ -291,10 +305,12 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
       </div>
       ))}</div>
     ))}
+   
   </>
 )}
   
               </FAQAnswer>
+              </div>
             ))}
             </div>
             

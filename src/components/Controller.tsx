@@ -14,6 +14,7 @@ interface ControllerProps {
 const Controller: React.FC<ControllerProps> = ({ radio,setAnotherVariable}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<any[]>([]);
+  const [sources, setSources] = useState<any[]>([]);
 
 
 
@@ -43,14 +44,15 @@ const Controller: React.FC<ControllerProps> = ({ radio,setAnotherVariable}) => {
         msg: msgtext
       }
     }).then(response => {
-      console.log(response.data);
+      console.log(response.data.source);
       const msgtext=response.data.msg
       const rachelMessage = { sender: "FM Chatbot", msgtext };
       messagesArr.push(rachelMessage);
       // console.log(messagesArr)
       setMessages(messagesArr);
-      setAnotherVariable('new')
-      handleClick();
+      setAnotherVariable('new');
+      setSources(response.data.source);
+      // handleClick();
 
       // Play audio
       setIsLoading(false);
@@ -71,7 +73,7 @@ const Controller: React.FC<ControllerProps> = ({ radio,setAnotherVariable}) => {
   const handleClick = () => {
     setClickCount(clickCount + 1);
 
-    if (clickCount + 1 === 5) {
+    if (clickCount + 1 === 2) {
       openPopup()
       // window.location.href='https://staging.safnow.org/membership/'
       // window.location.href = 'https://profile.safnow.org/account/login.aspx?RedirectURL=https%3A%2F%2Fsafnow.org&_gl=1*1l43es0*_ga*NDI3MjYyMTYxLjE2ODY5MDM0OTk.*_ga_HCZ8NPPN6Y*MTY4NjkwMzQ5OS4xLjAuMTY4NjkwMzQ5OS4wLjAuMA..&_ga=2.164900028.2067406789.1686903499-427262161.1686903499&reload=timezone'; // Replace '/new-link' with the desired URL
@@ -131,7 +133,7 @@ const Controller: React.FC<ControllerProps> = ({ radio,setAnotherVariable}) => {
                   </p>
 
                   {/* Message */}
-                  <MessageComp text={msg.msgtext} time={new Date().toLocaleString()} sender={msg.sender}/>
+                  <MessageComp text={msg.msgtext} time={new Date().toLocaleString()} sender={msg.sender} source={sources}/>
                 </div>
               </div>
             );
