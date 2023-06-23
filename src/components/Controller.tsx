@@ -52,7 +52,7 @@ const Controller: React.FC<ControllerProps> = ({ radio,setAnotherVariable}) => {
       setMessages(messagesArr);
       setAnotherVariable('new');
       setSources(response.data.source);
-      // handleClick();
+      handleClick();
 
       // Play audio
       setIsLoading(false);
