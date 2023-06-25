@@ -285,7 +285,7 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
   <>
     <p>{answer}</p>
     
-    <div><button onClick={() => toggleExpanded(answerIndex.toString())}>{expandedId === answerIndex.toString() ? 'Read Less' : 'Read More'}</button></div>
+    {/* <div><button onClick={() => toggleExpanded(answerIndex.toString())}>{expandedId === answerIndex.toString() ? 'Read Less' : 'Read More'}</button></div> */}
     <br />
     
     {faq.source.map((source_doc, srcIndex) => (

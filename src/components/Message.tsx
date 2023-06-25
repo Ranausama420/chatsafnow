@@ -70,15 +70,17 @@ const toggleExpanded = (id: string) => {
       {!isFromSender && (
         <div>
           <hr></hr>
+
           {text.startsWith('Unfortunately,') ? (
   <p></p>
-) : (<div> <button style={{color:"blue"}}onClick={() => toggleExpanded('sources')}>{expandedId === 'sources' ? 'Hide Sources' : 'View Sources'}</button>
+) : (<div> <button style={{color:"blue"}}onClick={() => toggleExpanded('sources')}>{expandedId === 'sources' ? 'Read less' : 'Read More'}</button>
 {sourceData.map((item, index) => (
       <div id="sources" key={index} style={{ display: expandedId === "sources" ? 'block' : 'none' }}>
         <p><u>Source {index+1}</u></p>
         <p>{item.page_content}</p>
-        <p>Page: {item.pdf_numpages}</p>
-        <p>Source: {item.source}</p>
+        <p style={{margin:"6px"}}><span style={{borderRadius:"50px", backgroundColor:"#B7D8F0",color:"white",padding:"3px"}}>Page: {item.pdf_numpages}</span></p>
+      
+        <p style={{margin:"4px"}}><span style={{borderRadius:"30px", backgroundColor:"#FFBABA",color:"white",padding:"4px"}}>Source: {item.source}</span></p>
         <hr></hr>
       </div>
       
