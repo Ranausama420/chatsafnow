@@ -214,11 +214,11 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
       }
     }, [anotherVariable]);
 
-    const [expandedId, setExpandedId] = useState('');
+  //   const [expandedId, setExpandedId] = useState('');
 
-  const toggleExpanded = (id: string) => {
-    setExpandedId(expandedId === id ? '' : id);
-  };
+  // const toggleExpanded = (id: string) => {
+  //   setExpandedId(expandedId === id ? '' : id);
+  // };
 
   return (
     <div>
