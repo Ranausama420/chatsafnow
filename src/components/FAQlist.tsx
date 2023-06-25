@@ -214,8 +214,7 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
       }
     }, [anotherVariable]);
 
-  //   const [expandedId, setExpandedId] = useState('');
-
+    // const [expandedId, setExpandedId] = useState('');
   // const toggleExpanded = (id: string) => {
   //   setExpandedId(expandedId === id ? '' : id);
   // };
@@ -289,7 +288,7 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
     <br />
     
     {faq.source.map((source_doc, srcIndex) => (
-      <div id={answerIndex.toString()} style={{ display: expandedId === answerIndex.toString() ? 'block' : 'none' }}>{source_doc.map((source_docs, srcdIndex) => (
+      <div id={answerIndex.toString()} style={{ display: 'all' === answerIndex.toString() ? 'block' : 'none' }}>{source_doc.map((source_docs, srcdIndex) => (
       <div>
 {answerIndex === srcIndex ? (
         <>
