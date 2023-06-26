@@ -219,6 +219,7 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
   //   setExpandedId(expandedId === id ? '' : id);
   // };
 
+
   return (
     <div>
       <div><div className="flex items-center justify-between w-full p-2 mb-3 bg-gray-900 font-bold shadow bg-gradient-to-r from-gray-200 via-gray-150 to-gray-200">
@@ -283,7 +284,10 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
 ) : (
   <>
     <p>{answer}</p>
-    
+    <br></br>
+    <p>This is a concise response. For a more comprehensive answer, consider becoming a subscriber to Floral Management Magazine, the leading authority in the floral business. To subscribe, <a href="https://profile.safnow.org/floral_management?_gl=1*hzd0tw*_ga*MTQzOTkyNjIwOC4xNjc0ODIzOTcx*_ga_HCZ8NPPN6Y*MTY4Nzc0NjUyOC4zMDQuMS4xNjg3NzQ2NTQ4LjAuMC4w*_ga_G1MRYP8SJ8*MTY4Nzc0NjUyOC4xODYuMC4xNjg3NzQ2NTQ4LjAuMC4w&_ga=2.267973901.289386474.1687743770-1439926208.1674823971&reload=timezone" style={{color:"blue"}}><u>click here</u></a></p>
+    <br></br>
+    <p>Furthermore, for more specific assistance, you can reach out to the SAF Live Chat team at <a href="https://safnow.org" style={{color:"blue"}}>https://safnow.org</a> or contact them via email at <a style={{color:"blue"}}>info@safnow.org.</a></p>
     {/* <div><button onClick={() => toggleExpanded(answerIndex.toString())}>{expandedId === answerIndex.toString() ? 'Read Less' : 'Read More'}</button></div> */}
     <br />
     
