@@ -61,9 +61,42 @@ const toggleExpanded = (id: string) => {
   setExpandedId(expandedId === id ? '' : id);
 };
 
+
+// const replacedString = text.replace(
+//   /https:\/\/direct.lc.chat\/8928829\//g,
+//   '<a href="https://direct.lc.chat/8928829/" style="color:blue">https://direct.lc.chat/8928829/</a>'
+// );
+// const replacedString1 = replacedString.replace(
+//   /info@safnow.org/g,
+//   '<a href="info@safnow.org" style="color:blue">info@safnow.org</a>'
+// );
+
+
+if (text.startsWith('Unfortunately,')) {
+  // Replace the link and email address in the string with actual links
+  const replacedString = text
+    .replace(
+      /https:\/\/direct.lc.chat\/8928829\//g,
+      '<a href="https://direct.lc.chat/8928829/" style="color: blue;">https://direct.lc.chat/8928829/</a>'
+    )
+    .replace(
+      /info@safnow.org/g,
+      '<a href="mailto:info@safnow.org" style="color: blue;">info@safnow.org</a>'
+    );
+    text=replacedString
+}
+
+
+
+
+// console.log("replacedString",replacedString)
+// info@safnow.org
   return (
     <MessageContainer isFromSender={isFromSender}>
-      <MessageText isFromSender={isFromSender}>{text}
+      {/* <MessageText isFromSender={isFromSender}><p>Unfortunately, I do not possess the answer to your specific question at this time. However, I am here to assist you in the best way possible. To address your query, I recommend contacting the SAF Live Chat team, available at <a href="" style={{color:"blue"}}>https://direct.lc.chat/8928829/</a>. They have the expertise to provide you with the information you are seeking. Additionally, you can also reach out to them via email at info@safnow.org. They will be better equipped to assist you promptly and accurately.</p> */}
+      <MessageText isFromSender={isFromSender}>
+        {/* <p>{text}</p> */}
+      <p dangerouslySetInnerHTML={{ __html: text }} />
 
       {/* <div><button onClick={() => toggleExpanded('tst')}>{expandedId === 'tst'? 'Read Less' : 'Read More'}</button></div> */}
 

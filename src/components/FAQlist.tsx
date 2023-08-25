@@ -142,9 +142,14 @@ const FAQs: React.FC<QAProps> = ({ anotherVariable,setAnotherVariable}) =>  {
       data.forEach((item: any) => {
         // console.log(item)
         // console.log(typeof item)
+        
+        
+        // const words = item.question.split(' ');
+        // const first200Words = words.slice(0, 150).join(' ');
         const question=item.question
         const answers=[item.answer]
         const source=[item.source]
+        // console.log(first200Words)
 
       const questionExists = parsedData.some((data) => data.question === question);
       if (questionExists) {
